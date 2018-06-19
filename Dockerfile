@@ -50,7 +50,7 @@ ENV R_BASE_VERSION 3.4.3
 
 ## Now install R and littler, and create a link for littler in /usr/local/bin
 ## Also set a default CRAN repo, and make sure littler knows about it too
-RUN apt-get update \
+RUN apt-get update --allow-unauthenticated \
     && apt-get install -y --no-install-recommends --allow-unauthenticated \
         libssh2-1-dev \
         libcurl4-openssl-dev \
