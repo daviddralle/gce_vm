@@ -33,9 +33,9 @@ RUN conda install --yes -c conda-forge \
 
 # Install google cloud storage fuse (gcsfuse) to mount cloud storage buckets in datalab VM - specific to Ubuntu Xenial 
 RUN export GCSFUSE_REPO=gcsfuse-xenial \
-	&& echo "deb http://packages.cloud.google.com/apt $GCSFUSE_REPO main" | sudo tee /etc/apt/sources.list.d/gcsfuse.list \
-	&& curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add - \
-	&& apt-get update \
+	&& echo "deb http://packages.cloud.google.com/apt $GCSFUSE_REPO main" | tee /etc/apt/sources.list.d/gcsfuse.list \
+	&& curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - \
+	&& apt-get update --allow-unauthenticated \
 	&& apt-get install gcsfuse -y --allow-unauthenticated
 
 
