@@ -1,11 +1,12 @@
 
 FROM jupyter/scipy-notebook
+
 MAINTAINER David Dralle <daviddralle@gmail.com>
 
 USER root
 
 RUN apt-get update && \
-    apt-get install -y libfreetype6-dev pkg-config libx11-dev && \
+    apt-get install -y libfreetype6-dev pkg-config libx11-dev gnupg && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
