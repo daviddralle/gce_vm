@@ -1,6 +1,5 @@
 
 FROM jupyter/scipy-notebook
-
 MAINTAINER David Dralle <daviddralle@gmail.com>
 
 USER root
