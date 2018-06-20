@@ -23,7 +23,7 @@ RUN conda clean --yes --all
 
 RUN conda install --yes -c conda-forge \
 	'pandas' \
-	'pysal'
+	'pysal' \
     'geopandas' \
     'georasters' \
     'google-api-python-client' \
