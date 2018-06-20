@@ -10,6 +10,8 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+RUN conda clean --yes --all
+
 RUN conda install --yes jupyterlab \
     && jupyter lab --generate-config
 
@@ -17,16 +19,11 @@ RUN apt-get update \
 	&& apt-get install -y curl \
 	&& apt-get install -y git
 
-RUN conda install --yes \
-    'pandas' \ 
-    'basemap' \
-    'h5py' \
-    'netcdf4' \
-    'pysal'
+RUN conda clean --yes --all
 
 RUN conda install --yes -c conda-forge \
-    'cartopy' \
-    'gdal=2.1.3' \
+	'pandas' \
+	'pysal'
     'geopandas' \
     'georasters' \
     'google-api-python-client' \
