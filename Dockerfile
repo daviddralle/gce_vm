@@ -43,7 +43,8 @@ RUN export GCSFUSE_REPO=gcsfuse-xenial \
 ### INSTALL R ###
 
 # need to add repository for latest version of R
-RUN echo 'deb http://cran.rstudio.com/bin/linux/ubuntu xenial/' >> /etc/apt/sources.list
+RUN echo 'deb http://cran.rstudio.com/bin/linux/ubuntu xenial/' >> /etc/apt/sources.list \
+    && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 
 # Define R version to install
 ENV R_BASE_VERSION 3.4.3
