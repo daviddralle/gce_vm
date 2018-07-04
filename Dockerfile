@@ -16,14 +16,10 @@ RUN conda install --yes jupyterlab \
     && jupyter lab --generate-config
 
 RUN apt-get update \
-	&& apt-get install -y curl \
-	&& apt-get install -y git
-
-RUN conda clean --yes --all
+	&& apt-get install -y curl
 
 RUN conda install --yes -c conda-forge \
 	'pandas' \
-	'pysal' \
     'geopandas' \
     'georasters' \
     'google-api-python-client' \
@@ -70,6 +66,11 @@ RUN conda install --yes \
     'r-hexbin=1.27*' && \
     conda clean -tipsy && \
     fix-permissions $CONDA_DIR
+
+# Add on packages
+RUN conda install --yes -c conda-forge \
+    'tqdm' 
+
 
 EXPOSE 8888
 
