@@ -71,6 +71,11 @@ RUN conda install --yes \
 RUN conda install --yes -c conda-forge \
     'tqdm' 
 
+RUN conda install --yes -c conda-forge \
+	'r-rgdal' \
+	'r-ncdf4'
+
+
 
 EXPOSE 8888
 
