@@ -69,7 +69,8 @@ RUN conda install --yes \
 
 # Add on packages
 RUN conda install --yes -c conda-forge \
-    'tqdm' 
+    'tqdm' \
+    'pymc3'
 
 RUN conda install --yes -c conda-forge \
 	'r-rgdal' \
