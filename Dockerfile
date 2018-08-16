@@ -13,7 +13,7 @@ RUN apt-get update && \
 RUN conda clean --yes --all
 
 RUN conda install --yes jupyterlab \
-    && jupyter lab --generate-config
+    && jupyter lab -y --generate-config
 
 RUN apt-get update \
 	&& apt-get install -y curl
@@ -31,7 +31,6 @@ RUN export GCSFUSE_REPO=gcsfuse-xenial \
 	&& curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - \
 	&& apt-get update --allow-unauthenticated \
 	&& apt-get install gcsfuse -y --allow-unauthenticated
-
 
 ### INSTALL R ###
 
