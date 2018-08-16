@@ -76,7 +76,17 @@ RUN conda install --yes -c conda-forge \
 	'r-rgdal' \
 	'r-ncdf4'
 
+RUN pip install ipywidgets \
+  && jupyter nbextension enable --py widgetsnbextension --sys-prefix \
+  && jupyter labextension install @jupyter-widgets/jupyterlab-manager
 
+# Get google maps API and rebuild jupyterlab to correctly display widgets
+RUN conda install --yes -c conda-forge \
+	'basemap' \
+	'folium' \
+	'gmaps'
+
+RUN jupyter lab build
 
 EXPOSE 8888
 
