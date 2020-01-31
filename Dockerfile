@@ -79,9 +79,6 @@ RUN pip install ipywidgets \
   && jupyter nbextension enable --py widgetsnbextension --sys-prefix \
   && jupyter labextension install @jupyter-widgets/jupyterlab-manager
 
-# Get google maps API and rebuild jupyterlab to correctly display widgets
-RUN conda install --yes \
-	'dask'
 
 RUN jupyter lab build
 
