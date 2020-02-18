@@ -1,4 +1,3 @@
-
 FROM jupyter/scipy-notebook
 
 MAINTAINER David Dralle <daviddralle@gmail.com>
@@ -16,10 +15,10 @@ RUN conda install --yes jupyterlab \
     && jupyter lab -y --generate-config
 
 RUN apt-get update \
-	&& apt-get install -y curl
+    && apt-get install -y curl
 
 RUN conda install --yes -c conda-forge \
-	'pandas' \
+    'pandas' \
     'geopandas' \
     'georasters' \
     'google-api-python-client' \
@@ -27,10 +26,10 @@ RUN conda install --yes -c conda-forge \
 
 # Install google cloud storage fuse (gcsfuse) to mount cloud storage buckets in datalab VM - specific to Ubuntu Xenial 
 RUN export GCSFUSE_REPO=gcsfuse-xenial \
-	&& echo "deb http://packages.cloud.google.com/apt $GCSFUSE_REPO main" | tee /etc/apt/sources.list.d/gcsfuse.list \
-	&& curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - \
-	&& apt-get update --allow-unauthenticated \
-	&& apt-get install gcsfuse -y --allow-unauthenticated
+    && echo "deb http://packages.cloud.google.com/apt $GCSFUSE_REPO main" | tee /etc/apt/sources.list.d/gcsfuse.list \
+    && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - \
+    && apt-get update --allow-unauthenticated \
+    && apt-get install gcsfuse -y --allow-unauthenticated
 
 ### INSTALL R ###
 
@@ -72,13 +71,16 @@ RUN conda install --yes -c conda-forge \
     'pymc3'
 
 RUN conda install --yes -c conda-forge \
-	'r-rgdal' \
-	'r-ncdf4'
+    'r-rgdal' \
+    'r-ncdf4'
 
 RUN pip install ipywidgets \
   && jupyter nbextension enable --py widgetsnbextension --sys-prefix \
   && jupyter labextension install @jupyter-widgets/jupyterlab-manager
 
+# Get google maps API and rebuild jupyterlab to correctly display widgets
+RUN conda install --yes \
+    'dask'
 
 RUN jupyter lab build
 
